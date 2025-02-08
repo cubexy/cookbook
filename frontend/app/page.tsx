@@ -1,5 +1,4 @@
-import { Button, Flex, Heading, Text } from "@radix-ui/themes";
-import Image from "next/image";
+import { Text } from "@radix-ui/themes";
 
 export default function Home() {
   return (
