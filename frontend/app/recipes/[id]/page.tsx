@@ -1,23 +1,68 @@
-import { BulletPoint } from "@/components/displays/BulletPoint";
+import { RecipeHeading } from "@/components/displays/RecipeHeading";
+import { IngredientsList } from "@/components/displays/IngredientsList";
+import { PreperationStepsList } from "@/components/displays/PreperationStepsList";
 import {
   CalendarIcon,
   HandIcon,
-  LapTimerIcon,
-  PersonIcon
+  InfoCircledIcon,
+  LapTimerIcon
 } from "@radix-ui/react-icons";
-import {
-  Badge,
-  Card,
-  Flex,
-  Heading,
-  Quote,
-  Separator,
-  Table,
-  Text,
-  TextField
-} from "@radix-ui/themes";
+import { Badge, Callout, Flex, Separator, Tooltip } from "@radix-ui/themes";
 import Image from "next/image";
+import { RecipeChefNote } from "@/components/displays/RecipeChefNote";
+import { RecipeTagList } from "@/components/displays/RecipeTagList";
 
+// First, add this type definition at the top of the file, after the imports
+export type Recipe = {
+  id: number;
+  title: string;
+  date: string;
+  duration: string;
+  difficulty: string;
+  chefNote: string;
+  tags: string[];
+  ingredients: Array<{
+    amount: number;
+    unit: string;
+    unitPlural: string;
+    item: string;
+  }>;
+  steps: string[];
+  image: string;
+  note: string;
+};
+
+// Add the recipe data constant
+const RECIPE_DATA: Recipe = {
+  id: 1,
+  title: "Spaghetti Bolognese",
+  date: "09.02.2025",
+  duration: "30min",
+  difficulty: "mittel",
+  chefNote:
+    "Spaghetti Bolognese ist ein Klassiker der italienischen Küche. Das Gericht hat Wohlfühlgarantie!",
+  tags: ["Italienisch", "Pasta", "Fleisch"],
+  ingredients: [
+    { amount: 1, unit: "Packung", unitPlural: "Packungen", item: "Nudeln" },
+    { amount: 1, unit: "Schale", unitPlural: "Schalen", item: "Bolognese" }
+  ],
+  steps: [
+    "Zwiebeln und Knoblauch schälen und fein hacken, damit sie sich später gut mit der Sauce verbinden.",
+    "Karotten und Sellerie putzen und in sehr kleine Würfel schneiden, um eine gleichmäßige Konsistenz zu erhalten.",
+    "In einer großen Pfanne oder einem Topf etwas Olivenöl erhitzen und die Zwiebeln sowie den Knoblauch darin glasig anschwitzen.",
+    "Das Hackfleisch hinzufügen und bei mittlerer bis hoher Hitze gut anbraten, bis es krümelig und leicht gebräunt ist.",
+    "Die klein gewürfelten Karotten und den Sellerie dazugeben und einige Minuten mitbraten, um das volle Aroma zu entfalten.",
+    "Das Tomatenmark einrühren und kurz anrösten, damit es eine leicht karamellisierte Note entwickelt.",
+    "Mit Rotwein ablöschen und einige Minuten einkochen lassen, bis sich der Alkohol verflüchtigt und das Aroma intensiviert wird.",
+    "Gehackte Tomaten und etwas Brühe hinzufügen, anschließend mit Salz, Pfeffer und italienischen Kräutern wie Oregano und Thymian würzen.",
+    "Die Sauce bei niedriger bis mittlerer Hitze mindestens 30 Minuten köcheln lassen, idealerweise 1-2 Stunden, damit sich die Aromen gut entfalten.",
+    "Mit frisch gekochter Pasta servieren und nach Belieben mit geriebenem Parmesan und frischem Basilikum garnieren."
+  ],
+  image: "/recipe_placeholder.jpg",
+  note: "Besonders gut passt zur Bolognese ein schönes Glas Wein. 🍷"
+};
+
+// Modify the component to use the data
 const ShowRecipe = ({ params }: { params: { id: string } }) => {
   return (
     <Flex align="start" justify="center" className="p-6">
@@ -25,8 +70,8 @@ const ShowRecipe = ({ params }: { params: { id: string } }) => {
         <Flex gap="4" direction="column">
           <div className="w-full md:w-[400px] h-[500px] md:h-[600px] relative">
             <Image
-              src={"/recipe_placeholder.jpg"}
-              alt="recipe"
+              src={RECIPE_DATA.image}
+              alt={RECIPE_DATA.title}
               fill
               quality={75}
               sizes="(max-width: 600px) 100vw, 400px"
@@ -39,17 +84,23 @@ const ShowRecipe = ({ params }: { params: { id: string } }) => {
             dir="row"
             className="flex-wrap w-full md:w-[400px]"
           >
-            <Badge color="gray" size="3">
-              <CalendarIcon /> 09.02.2025
-            </Badge>
+            <Tooltip content="Hinzugefügt am">
+              <Badge color="gray" size="3">
+                <CalendarIcon /> {RECIPE_DATA.date}
+              </Badge>
+            </Tooltip>
             <Separator orientation="vertical" />
-            <Badge color="gray" size="3">
-              <LapTimerIcon /> 30min
-            </Badge>
+            <Tooltip content="Dauer der Zubereitung">
+              <Badge color="gray" size="3">
+                <LapTimerIcon /> {RECIPE_DATA.duration}
+              </Badge>
+            </Tooltip>
             <Separator orientation="vertical" />
-            <Badge color="gray" size="3">
-              <HandIcon /> mittel
-            </Badge>
+            <Tooltip content="Schwierigkeitsgrad">
+              <Badge color="gray" size="3">
+                <HandIcon /> {RECIPE_DATA.difficulty}
+              </Badge>
+            </Tooltip>
           </Flex>
         </Flex>
         <Separator size="4" className="!block md:!hidden" />
@@ -58,126 +109,17 @@ const ShowRecipe = ({ params }: { params: { id: string } }) => {
           align="start"
           className="w-full md:w-[800px] gap-4 md:gap-2"
         >
-          <Heading size="7">
-            <Quote>Spaghetti Bolognese</Quote>
-          </Heading>
-          <Card className="w-full">
-            <Flex gap="0" direction="column">
-              <Text size="2" weight="light">
-                Anmerkung vom Chefkoch
-              </Text>
-              <Text size="3">
-                Spaghetti Bolognese ist ein Klassiker der italienischen Küche.
-                Das Gericht hat Wohlfühlgarantie!
-              </Text>
-            </Flex>
-          </Card>
-          <Flex
-            gap="2"
-            align="center"
-            dir="row"
-            className="flex-wrap w-full md:w-[400px]"
-          >
-            <Badge size="3">Italienisch</Badge>
-            <Badge size="3">Pasta</Badge>
-            <Badge size="3">Fleisch</Badge>
-          </Flex>
-          <Flex gap="2" align="center" justify="center">
-            <Text size="2">Zutaten für</Text>
-            <TextField.Root
-              placeholder="1"
-              className="w-24"
-              variant="classic"
-              type="number"
-            >
-              <TextField.Slot>
-                <PersonIcon />
-              </TextField.Slot>
-            </TextField.Root>
-            <Text size="2">Personen</Text>
-          </Flex>
-          <Table.Root className="w-full">
-            <Table.Header>
-              <Table.Row>
-                <Table.ColumnHeaderCell justify="end">
-                  <Text>Menge</Text>
-                </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>
-                  <Text>Zutat</Text>
-                </Table.ColumnHeaderCell>
-              </Table.Row>
-            </Table.Header>
-
-            <Table.Body>
-              <Table.Row>
-                <Table.Cell
-                  justify="end"
-                  width="80px"
-                  className="max-w-[80px] text-wrap"
-                >
-                  1 Pckg.
-                </Table.Cell>
-                <Table.Cell width="300px" className="text-wrap">
-                  Nudeln
-                </Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell
-                  justify="end"
-                  width="80px"
-                  className="max-w-[80px] text-wrap"
-                >
-                  1 Schale
-                </Table.Cell>
-                <Table.Cell width="300px" className="text-wrap">
-                  Bolognese
-                </Table.Cell>
-              </Table.Row>
-            </Table.Body>
-          </Table.Root>
-          <Flex className="mt-2" direction="column" align="start" gap="2">
-            <Text size="4">Zubereitung</Text>
-            <BulletPoint
-              index={1}
-              text="Zwiebeln und Knoblauch schälen und fein hacken, damit sie sich später gut mit der Sauce verbinden."
-            />
-            <BulletPoint
-              index={2}
-              text="Karotten und Sellerie putzen und in sehr kleine Würfel schneiden, um eine gleichmäßige Konsistenz zu erhalten."
-            />
-            <BulletPoint
-              index={3}
-              text="In einer großen Pfanne oder einem Topf etwas Olivenöl erhitzen und die Zwiebeln sowie den Knoblauch darin glasig anschwitzen."
-            />
-            <BulletPoint
-              index={4}
-              text="Das Hackfleisch hinzufügen und bei mittlerer bis hoher Hitze gut anbraten, bis es krümelig und leicht gebräunt ist."
-            />
-            <BulletPoint
-              index={5}
-              text="Die klein gewürfelten Karotten und den Sellerie dazugeben und einige Minuten mitbraten, um das volle Aroma zu entfalten."
-            />
-            <BulletPoint
-              index={6}
-              text="Das Tomatenmark einrühren und kurz anrösten, damit es eine leicht karamellisierte Note entwickelt."
-            />
-            <BulletPoint
-              index={7}
-              text="Mit Rotwein ablöschen und einige Minuten einkochen lassen, bis sich der Alkohol verflüchtigt und das Aroma intensiviert wird."
-            />
-            <BulletPoint
-              index={8}
-              text="Gehackte Tomaten und etwas Brühe hinzufügen, anschließend mit Salz, Pfeffer und italienischen Kräutern wie Oregano und Thymian würzen."
-            />
-            <BulletPoint
-              index={9}
-              text="Die Sauce bei niedriger bis mittlerer Hitze mindestens 30 Minuten köcheln lassen, idealerweise 1-2 Stunden, damit sich die Aromen gut entfalten."
-            />
-            <BulletPoint
-              index={10}
-              text="Mit frisch gekochter Pasta servieren und nach Belieben mit geriebenem Parmesan und frischem Basilikum garnieren."
-            />
-          </Flex>
+          <RecipeHeading title={RECIPE_DATA.title} />
+          <RecipeChefNote chefNote={RECIPE_DATA.chefNote} />
+          <RecipeTagList tags={RECIPE_DATA.tags} />
+          <IngredientsList ingredients={RECIPE_DATA.ingredients} />
+          <PreperationStepsList steps={RECIPE_DATA.steps} />
+          <Callout.Root color="gray" variant="soft" highContrast>
+            <Callout.Icon>
+              <InfoCircledIcon />
+            </Callout.Icon>
+            <Callout.Text>{RECIPE_DATA.note}</Callout.Text>
+          </Callout.Root>
         </Flex>
       </div>
     </Flex>
