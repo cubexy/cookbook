@@ -12,7 +12,6 @@ import Image from "next/image";
 import { RecipeChefNote } from "@/components/displays/RecipeChefNote";
 import { RecipeTagList } from "@/components/displays/RecipeTagList";
 
-// First, add this type definition at the top of the file, after the imports
 export type Recipe = {
   id: number;
   title: string;
@@ -32,7 +31,6 @@ export type Recipe = {
   note: string;
 };
 
-// Add the recipe data constant
 const RECIPE_DATA: Recipe = {
   id: 1,
   title: "Spaghetti Bolognese",
@@ -62,7 +60,6 @@ const RECIPE_DATA: Recipe = {
   note: "Besonders gut passt zur Bolognese ein schönes Glas Wein. 🍷"
 };
 
-// Modify the component to use the data
 const ShowRecipe = ({ params }: { params: { id: string } }) => {
   return (
     <Flex align="start" justify="center" className="p-6">
