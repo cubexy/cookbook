@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <body className="m-0">
+      <body>
         <ThemeProvider attribute="class">
           <Theme
             accentColor="iris"
