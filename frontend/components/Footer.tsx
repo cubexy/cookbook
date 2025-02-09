@@ -11,7 +11,7 @@ const Footer = () => {
     >
       <Link href="https://github.com/cubexy">
         <Text color="gray" size="1">
-          made with {"<3"} by cubexy
+          made with {"♥️"} by cubexy
         </Text>
       </Link>
     </Flex>
