@@ -4,6 +4,7 @@ import "@radix-ui/themes/styles.css";
 import { Separator, Theme } from "@radix-ui/themes";
 import { Header } from "@/components/Header";
 import { ThemeProvider } from "next-themes";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "ai_cookbook",
@@ -29,6 +30,7 @@ export default function RootLayout({
             <Header />
             <Separator my="0" size="4" />
             <div>{children}</div>
+            <Footer />
           </Theme>
         </ThemeProvider>
       </body>
