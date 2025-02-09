@@ -7,7 +7,7 @@ const Footer = () => {
       direction="row"
       align="center"
       justify="center"
-      className="mt-10 mb-5"
+      className="pt-10 pb-5"
     >
       <Link href="https://github.com/cubexy">
         <Text color="gray" size="1">

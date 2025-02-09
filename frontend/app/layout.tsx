@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
-import { Separator, Theme } from "@radix-ui/themes";
+import { Flex, Separator, Theme } from "@radix-ui/themes";
 import { Header } from "@/components/Header";
 import { ThemeProvider } from "next-themes";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "ai_cookbook",
-  description: "ai assisted recipes"
+  title: "superkochbuch",
+  description: "Dein persönliches Kochbuch"
 };
 export default function RootLayout({
   children
@@ -29,7 +29,9 @@ export default function RootLayout({
           >
             <Header />
             <Separator my="0" size="4" />
-            <div>{children}</div>
+            <Flex align="start" justify="center" className="p-6">
+              {children}
+            </Flex>
             <Footer />
           </Theme>
         </ThemeProvider>

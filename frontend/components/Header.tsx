@@ -12,8 +12,8 @@ export const Header = () => {
             <Link href="/">
               <Flex gap="0">
                 <Image
-                  src="/logo.png"
-                  alt="logo"
+                  src="/icon.png"
+                  alt="superkochbuch Icon"
                   width={26}
                   height={26}
                   className="mb-[1px] mr-2"

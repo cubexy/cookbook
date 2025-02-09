@@ -2,6 +2,7 @@ import { RecipeHeading } from "@/components/displays/RecipeHeading";
 import { IngredientsList } from "@/components/displays/IngredientsList";
 import { PreperationStepsList } from "@/components/displays/PreperationStepsList";
 import {
+  ArrowRightIcon,
   CalendarIcon,
   HandIcon,
   InfoCircledIcon,
@@ -31,7 +32,7 @@ export type Recipe = {
   note: string;
 };
 
-const RECIPE_DATA: Recipe = {
+const RECIPE_MOCK_DATA: Recipe = {
   id: 1,
   title: "Spaghetti Bolognese",
   date: "09.02.2025",
@@ -62,64 +63,64 @@ const RECIPE_DATA: Recipe = {
 
 const ShowRecipe = ({ params }: { params: { id: string } }) => {
   return (
-    <Flex align="start" justify="center" className="p-6">
-      <div className="flex flex-col md:flex-row align-top justify-center w-full gap-5">
-        <Flex gap="4" direction="column">
-          <div className="w-full md:w-[400px] h-[500px] md:h-[600px] relative">
-            <Image
-              src={RECIPE_DATA.image}
-              alt={RECIPE_DATA.title}
-              fill
-              quality={75}
-              sizes="(max-width: 600px) 100vw, 400px"
-              className="rounded-3xl shadow-2xl object-cover"
-            />
-          </div>
-          <Flex
-            gap="2"
-            align="center"
-            dir="row"
-            className="flex-wrap w-full md:w-[400px]"
-          >
-            <Tooltip content="Hinzugefügt am">
-              <Badge color="gray" size="3">
-                <CalendarIcon /> {RECIPE_DATA.date}
-              </Badge>
-            </Tooltip>
-            <Separator orientation="vertical" />
-            <Tooltip content="Dauer der Zubereitung">
-              <Badge color="gray" size="3">
-                <LapTimerIcon /> {RECIPE_DATA.duration}
-              </Badge>
-            </Tooltip>
-            <Separator orientation="vertical" />
-            <Tooltip content="Schwierigkeitsgrad">
-              <Badge color="gray" size="3">
-                <HandIcon /> {RECIPE_DATA.difficulty}
-              </Badge>
-            </Tooltip>
-          </Flex>
-        </Flex>
-        <Separator size="4" className="!block md:!hidden" />
+    <div className="flex flex-col md:flex-row align-top justify-center w-full gap-5">
+      <Flex gap="4" direction="column">
+        <div className="w-full md:w-[400px] h-[500px] md:h-[600px] relative">
+          <Image
+            src={RECIPE_MOCK_DATA.image}
+            alt={RECIPE_MOCK_DATA.title}
+            fill
+            quality={75}
+            sizes="(max-width: 600px) 100vw, 400px"
+            className="rounded-3xl shadow-2xl object-cover"
+          />
+        </div>
         <Flex
-          direction="column"
-          align="start"
-          className="w-full md:w-[800px] gap-4 md:gap-2"
+          gap="2"
+          align="center"
+          dir="row"
+          className="flex-wrap w-full md:w-[400px]"
         >
-          <RecipeHeading title={RECIPE_DATA.title} />
-          <RecipeChefNote chefNote={RECIPE_DATA.chefNote} />
-          <RecipeTagList tags={RECIPE_DATA.tags} />
-          <IngredientsList ingredients={RECIPE_DATA.ingredients} />
-          <PreperationStepsList steps={RECIPE_DATA.steps} />
-          <Callout.Root color="gray" variant="soft" highContrast>
-            <Callout.Icon>
-              <InfoCircledIcon />
-            </Callout.Icon>
-            <Callout.Text>{RECIPE_DATA.note}</Callout.Text>
-          </Callout.Root>
+          <Tooltip content="Hinzugefügt am">
+            <Badge color="gray" size="3">
+              <CalendarIcon /> {RECIPE_MOCK_DATA.date}
+            </Badge>
+          </Tooltip>
+          <Separator orientation="vertical" />
+          <Tooltip content="Dauer der Zubereitung">
+            <Badge color="gray" size="3">
+              <LapTimerIcon /> {RECIPE_MOCK_DATA.duration}
+            </Badge>
+          </Tooltip>
+          <Separator orientation="vertical" />
+          <Tooltip content="Schwierigkeitsgrad">
+            <Badge color="gray" size="3">
+              <HandIcon /> {RECIPE_MOCK_DATA.difficulty}
+            </Badge>
+          </Tooltip>
         </Flex>
-      </div>
-    </Flex>
+      </Flex>
+      <Separator size="4" className="!block md:!hidden" />
+      <Flex
+        direction="column"
+        align="start"
+        className="w-full md:w-[800px] gap-4 md:gap-2"
+      >
+        <RecipeHeading title={RECIPE_MOCK_DATA.title} />
+        <RecipeChefNote chefNote={RECIPE_MOCK_DATA.chefNote} />
+        <RecipeTagList tags={RECIPE_MOCK_DATA.tags} />
+        <IngredientsList ingredients={RECIPE_MOCK_DATA.ingredients} />
+        <PreperationStepsList steps={RECIPE_MOCK_DATA.steps} />
+        <Callout.Root color="gray" variant="soft" highContrast>
+          <Tooltip content="Damit machst du das Gericht noch besser!">
+            <Callout.Icon>
+              <ArrowRightIcon />
+            </Callout.Icon>
+          </Tooltip>
+          <Callout.Text>{RECIPE_MOCK_DATA.note}</Callout.Text>
+        </Callout.Root>
+      </Flex>
+    </div>
   );
 };
 
