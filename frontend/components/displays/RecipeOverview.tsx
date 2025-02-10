@@ -20,7 +20,7 @@ export const RecipeOverview = ({ item }: { item: RecipeListItem }) => {
       <Link href={`/recipes/${item.id}`}>
         <Card
           className="absolute bottom-4 left-4 right-4 z-10 hover:bottom-5 transition-all"
-          variant="classic" //ghost?
+          variant="classic" //TODO: ghost?
         >
           <Flex className="p-1 max-w-[300px]" direction="column" gap="2">
             <Heading size="6" weight="medium">
