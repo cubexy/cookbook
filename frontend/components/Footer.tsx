@@ -1,4 +1,4 @@
-import { Badge, Flex, Kbd, Text } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 
 const Footer = () => {
