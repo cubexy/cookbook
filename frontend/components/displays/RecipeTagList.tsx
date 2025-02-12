@@ -5,17 +5,26 @@ export const RecipeTagList = ({
   tags,
   size,
   color,
-  variant
+  variant,
+  className
 }: {
   tags: Recipe["tags"];
   size?: BadgeProps["size"];
-  color?: BadgeProps["color"];
+  color?: BadgeProps["color"] | "accent";
   variant?: BadgeProps["variant"];
+  className?: string;
 }) => {
   return (
     <Flex gap="2" align="center" dir="row" className="flex-wrap w-full">
       {tags.map((tag) => (
-        <Badge key={tag} size={size ?? "3"} color={color} variant={variant}>
+        <Badge
+          key={tag}
+          size={size ?? "3"}
+          /* @ts-ignore */
+          color={color}
+          variant={variant}
+          className={className}
+        >
           {tag}
         </Badge>
       ))}
