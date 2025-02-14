@@ -51,7 +51,7 @@ const ListRecipes = () => {
   return (
     <Flex gap="3" direction="column" justify="start" align="start">
       <Heading size="7">Mein Kochbuch</Heading>
-      <div className="flex flex-wrap gap-4 flex-col sm:flex-row lg:max-w-[1024px] md:max-w-[636px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {MOCK_DATA.map((recipe) => (
           <RecipeOverview key={recipe.id} item={recipe} />
         ))}
