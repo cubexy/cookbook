@@ -1,5 +1,6 @@
 import { RecipeOverview } from "@/components/displays/RecipeOverview";
-import { Flex, Heading, Text } from "@radix-ui/themes";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { Flex, Heading, Separator, Text, TextField } from "@radix-ui/themes";
 
 export type RecipeListItem = {
   id: number;
@@ -50,8 +51,17 @@ const MOCK_DATA: RecipeListItem[] = [
 const ListRecipes = () => {
   return (
     <Flex gap="3" direction="column" justify="start" align="start">
-      <Heading size="7">Mein Kochbuch</Heading>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <TextField.Root
+        placeholder="Rezepte durchsuchen..."
+        className="w-full mb-3"
+        size="3"
+      >
+        <TextField.Slot>
+          <MagnifyingGlassIcon height="16" width="16" />
+        </TextField.Slot>
+      </TextField.Root>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {MOCK_DATA.map((recipe) => (
           <RecipeOverview key={recipe.id} item={recipe} />
         ))}
