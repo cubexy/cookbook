@@ -1,25 +1,8 @@
 "use client";
 
 import useAutosizeTextArea from "@/utils/useAutosizeTextArea";
-import {
-  CameraIcon,
-  ChatBubbleIcon,
-  FileIcon,
-  FilePlusIcon,
-  MagnifyingGlassIcon,
-  PaperPlaneIcon,
-  Pencil2Icon,
-  SpeakerLoudIcon
-} from "@radix-ui/react-icons";
-import {
-  Button,
-  Card,
-  Flex,
-  IconButton,
-  Text,
-  TextArea,
-  TextField
-} from "@radix-ui/themes";
+import { FileIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
+import { Card, Flex, IconButton, Tooltip } from "@radix-ui/themes";
 import { useRef, useState } from "react";
 
 const AddRecipe = () => {
@@ -38,20 +21,25 @@ const AddRecipe = () => {
       <Card className="w-full max-w-[600px] p-4">
         <Flex direction="column" gap="3">
           <textarea
-            placeholder="Send a message..."
-            className="w-full overflow-hidden resize-none min-h-[42px] max-h-[calc(75dvh)] text-sm focus:outline-none"
+            placeholder="Beschreib mir dein Rezept..."
+            className="w-full overflow-hidden resize-none min-h-[42px] max-h-[calc(75dvh)] text-md md:text-sm focus:outline-none bg-transparent"
             rows={2}
             onChange={handleChange}
             ref={textAreaRef}
+            autoFocus
             value={value}
           />
           <Flex direction="row" justify="between" align="center">
-            <IconButton variant="ghost">
-              <FileIcon />
-            </IconButton>
-            <IconButton variant="ghost">
-              <PaperPlaneIcon />
-            </IconButton>
+            <Tooltip content="Bild hinzufügen">
+              <IconButton variant="ghost">
+                <FileIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip content="Rezept hinzufügen">
+              <IconButton variant="ghost">
+                <PaperPlaneIcon />
+              </IconButton>
+            </Tooltip>
           </Flex>
         </Flex>
       </Card>
