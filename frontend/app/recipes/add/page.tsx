@@ -1,7 +1,13 @@
 "use client";
 
 import useAutosizeTextArea from "@/utils/useAutosizeTextArea";
-import { FileIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
+import {
+  ArrowUpIcon,
+  FileIcon,
+  PaperPlaneIcon,
+  RocketIcon,
+  SpeakerLoudIcon
+} from "@radix-ui/react-icons";
 import { Card, Flex, IconButton, Tooltip } from "@radix-ui/themes";
 import { useRef, useState } from "react";
 
@@ -18,7 +24,7 @@ const AddRecipe = () => {
   };
   return (
     <Flex direction="column" align="center" gap="3" className="w-full h-fit">
-      <Card className="w-full max-w-[600px] p-4">
+      <Card className="w-full max-w-[600px] pt-4 pl-4 pb-2 pr-2">
         <Flex direction="column" gap="3">
           <textarea
             placeholder="Beschreib mir dein Rezept..."
@@ -35,11 +41,18 @@ const AddRecipe = () => {
                 <FileIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip content="Rezept hinzufügen">
-              <IconButton variant="ghost">
-                <PaperPlaneIcon />
-              </IconButton>
-            </Tooltip>
+            <Flex direction="row" align="center" gap="3">
+              <Tooltip content="Sprachaufnahme starten">
+                <IconButton variant="ghost">
+                  <SpeakerLoudIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip content="Rezept hinzufügen">
+                <IconButton variant="soft">
+                  <RocketIcon />
+                </IconButton>
+              </Tooltip>
+            </Flex>
           </Flex>
         </Flex>
       </Card>
