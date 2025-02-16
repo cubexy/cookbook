@@ -32,7 +32,7 @@ export default function RootLayout({
             <Flex align="start" justify="center" className="p-6">
               {children}
             </Flex>
-            <Footer />
+            {/**<Footer />*/}
           </Theme>
         </ThemeProvider>
       </body>
