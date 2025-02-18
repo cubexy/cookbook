@@ -3,7 +3,7 @@
 import { AIDIsclaimer } from "@/components/displays/AIDisclaimer";
 import { InitialChatMessageDisplay } from "@/components/displays/InitialChatMessageDisplay";
 import { ChatInput } from "@/components/inputs/ChatInput";
-import { Card, Flex, Grid } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import { useTheme } from "next-themes";
 
 const AddRecipe = () => {

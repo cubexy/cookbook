@@ -1,5 +1,5 @@
-import { MagicWandIcon, Pencil1Icon } from "@radix-ui/react-icons";
-import { Avatar, Card, Flex, Text } from "@radix-ui/themes";
+import { MagicWandIcon } from "@radix-ui/react-icons";
+import { Avatar, Flex, Text } from "@radix-ui/themes";
 
 export const InitialChatMessageDisplay = () => {
   return (
