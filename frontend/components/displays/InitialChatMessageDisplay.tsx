@@ -11,14 +11,12 @@ export const InitialChatMessageDisplay = () => {
       className="w-full"
     >
       <Avatar fallback={<MagicWandIcon />} />
-      <Flex direction="row" gap="1">
-        <Text>
-          Lass uns gemeinsam dein Rezept hinzufügen! Gib mir dazu etwa deine{" "}
-          <Text weight="medium">verwendeten Zutaten</Text>, eine Liste von{" "}
-          <Text weight="medium">Arbeitsschritten</Text> oder auch gerne deinen
-          persönlichen <Text weight="medium">Geheimtipp</Text>.
-        </Text>
-      </Flex>
+      <Text>
+        Lass uns gemeinsam dein Rezept hinzufügen! Gib mir dazu etwa deine{" "}
+        <Text weight="medium">verwendeten Zutaten</Text>, eine Liste von{" "}
+        <Text weight="medium">Arbeitsschritten</Text> oder auch gerne deinen
+        persönlichen <Text weight="medium">Geheimtipp</Text>.
+      </Text>
     </Flex>
   );
 };
