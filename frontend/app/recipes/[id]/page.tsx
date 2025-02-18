@@ -111,7 +111,12 @@ const ShowRecipe = ({ params }: { params: { id: string } }) => {
         <RecipeTagList tags={RECIPE_MOCK_DATA.tags} />
         <IngredientsList ingredients={RECIPE_MOCK_DATA.ingredients} />
         <PreperationStepsList steps={RECIPE_MOCK_DATA.steps} />
-        <Callout.Root color="gray" variant="soft" highContrast>
+        <Callout.Root
+          color="gray"
+          variant="soft"
+          highContrast
+          className="w-full"
+        >
           <Tooltip content="Damit machst du das Gericht noch besser!">
             <Callout.Icon>
               <ArrowRightIcon />

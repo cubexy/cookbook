@@ -1,42 +1,33 @@
 "use client";
 
+import { AIDIsclaimer } from "@/components/displays/AIDisclaimer";
+import { InitialChatMessageDisplay } from "@/components/displays/InitialChatMessageDisplay";
 import { ChatInput } from "@/components/inputs/ChatInput";
-import useAutosizeTextArea from "@/utils/useAutosizeTextArea";
-import {
-  ArrowUpIcon,
-  CameraIcon,
-  FileIcon,
-  PaperPlaneIcon,
-  PlusCircledIcon,
-  RocketIcon,
-  SpeakerLoudIcon
-} from "@radix-ui/react-icons";
-import { Card, Flex, IconButton, Tooltip, Text } from "@radix-ui/themes";
-import { useRef, useState } from "react";
+import { Card, Flex, Grid } from "@radix-ui/themes";
+import { useTheme } from "next-themes";
 
 const AddRecipe = () => {
+  const theme = useTheme();
+
   return (
     <Flex
-      direction="column"
       align="center"
-      gap="3"
-      className="w-full h-[calc(100dvh-4.5rem-4rem)]"
+      direction="column"
+      justify="center"
+      gap="6"
+      className="w-full max-w-[600px] min-h-[calc(100dvh-72px-50px)]"
     >
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-      <p>hallo</p>
-
-      <div className="flex-grow" />
-      <ChatInput />
+      <InitialChatMessageDisplay />
+      <Flex
+        align="center"
+        direction="column"
+        justify="center"
+        gap="4"
+        className="w-full min-h-fit"
+      >
+        <ChatInput />
+        <AIDIsclaimer />
+      </Flex>
     </Flex>
   );
 };
