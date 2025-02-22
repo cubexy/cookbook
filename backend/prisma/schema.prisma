@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Recipe {
+  id          String   @id @default(cuid())
+  title       String
+  date        DateTime @default(now())
+  durationInMinutes Int
+  difficulty  Difficulty
+  chefTopNote    String?
+  chefBottomNote String?
+  tags        Tag[]
+  ingredients Ingredient[]
+  steps       Step[]
+  imageUrl    String?
+}
+
+model Step {
+  id       String   @id @default(cuid())
+  number   Int
+  text     String
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId String
+}
+
+model Ingredient {
+  id      String   @id @default(cuid())
+  amount  Int
+  unit    String
+  name    String
+  recipe Recipe @relation(fields: [recipeId], references: [id])
+  recipeId String
+}
+
+model Tag {
+  id      String   @id @default(cuid())
+  name    String
+  recipes Recipe[]
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum Unit {
+  GRAM
+  MILLILITER
+  PIECE
+  TEASPOON
+  TABLESPOON
+  CUP
+  PINCH
+  PINCHES
+  HANDFUL
+}
