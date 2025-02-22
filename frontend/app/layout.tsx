@@ -20,13 +20,7 @@ export default function RootLayout({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body>
         <ThemeProvider attribute="class">
-          <Theme
-            accentColor="iris"
-            grayColor="auto"
-            radius="full"
-            appearance="inherit"
-            panelBackground="translucent"
-          >
+          <Theme accentColor="iris" grayColor="auto" radius="full" appearance="inherit" panelBackground="translucent">
             <Header />
             <Separator my="0" size="4" />
             <Flex align="start" justify="center" className="p-6">

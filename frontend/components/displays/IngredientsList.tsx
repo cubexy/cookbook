@@ -5,11 +5,7 @@ import { PersonIcon } from "@radix-ui/react-icons";
 import { Flex, Table, Text, TextField } from "@radix-ui/themes";
 import { useState } from "react";
 
-export const IngredientsList = ({
-  ingredients
-}: {
-  ingredients: Recipe["ingredients"];
-}) => {
+export const IngredientsList = ({ ingredients }: { ingredients: Recipe["ingredients"] }) => {
   const [servings, setServings] = useState(1);
 
   const setServingSize = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,13 +24,7 @@ export const IngredientsList = ({
     <Flex direction="column" align="start" gap="0" className="w-full py-2">
       <Flex gap="2" align="center" justify="center">
         <Text size="2">Zutaten für</Text>
-        <TextField.Root
-          placeholder="1"
-          className="w-24"
-          variant="classic"
-          type="number"
-          onChange={setServingSize}
-        >
+        <TextField.Root placeholder="1" className="w-24" variant="classic" type="number" onChange={setServingSize}>
           <TextField.Slot>
             <PersonIcon />
           </TextField.Slot>
@@ -59,11 +49,7 @@ export const IngredientsList = ({
 
             return (
               <Table.Row key={index}>
-                <Table.Cell
-                  justify="end"
-                  width="120px"
-                  className="max-w-[100px] min-w-[100px] text-wrap"
-                >
+                <Table.Cell justify="end" width="120px" className="max-w-[100px] min-w-[100px] text-wrap">
                   {amount} {unit}
                 </Table.Cell>
                 <Table.Cell width="300px" className="text-wrap">

@@ -1,9 +1,5 @@
 import useAutosizeTextArea from "@/utils/useAutosizeTextArea";
-import {
-  CameraIcon,
-  SpeakerLoudIcon,
-  PaperPlaneIcon
-} from "@radix-ui/react-icons";
+import { CameraIcon, SpeakerLoudIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Card, Flex, Tooltip, IconButton } from "@radix-ui/themes";
 import { useState, useRef } from "react";
 

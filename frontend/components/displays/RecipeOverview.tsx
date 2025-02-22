@@ -18,25 +18,12 @@ export const RecipeOverview = ({ item }: { item: RecipeListItem }) => {
             className="object-cover rounded-2xl"
           />
         </div>
-        <Card
-          className="!absolute bottom-4 left-4 right-4 z-10 hover:bottom-5 transition-all"
-          variant="ghost"
-        >
+        <Card className="!absolute bottom-4 left-4 right-4 z-10 hover:bottom-5 transition-all" variant="ghost">
           <Flex className="p-1 max-w-[300px]" direction="column" gap="2">
-            <Heading
-              size="6"
-              weight="medium"
-              className="text-white"
-              style={{ textShadow: "0 0 10px rgba(0,0,0,0.8)" }}
-            >
+            <Heading size="6" weight="medium" className="text-white" style={{ textShadow: "0 0 10px rgba(0,0,0,0.8)" }}>
               {item.title}
             </Heading>
-            <RecipeTagList
-              tags={item.tags}
-              size="2"
-              variant="surface"
-              color="gray"
-            />
+            <RecipeTagList tags={item.tags} size="2" variant="surface" color="gray" />
           </Flex>
         </Card>
         <div className="absolute bottom-0 left-0 right-0 top-0 z-3 hover:bg-black/20 transition-colors duration-200"></div>

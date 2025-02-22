@@ -12,9 +12,7 @@ export const AIDIsclaimer = () => {
         <InfoCircledIcon />
       </a>
 
-      <Text size="1">
-        Die Genererierung und Umwandlung von Rezepten wird durch KI unterstützt.
-      </Text>
+      <Text size="1">Die Genererierung und Umwandlung von Rezepten wird durch KI unterstützt.</Text>
     </Flex>
   );
 };

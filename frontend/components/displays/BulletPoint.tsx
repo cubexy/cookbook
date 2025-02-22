@@ -1,13 +1,7 @@
 import { DotFilledIcon } from "@radix-ui/react-icons";
 import { Flex, Text } from "@radix-ui/themes";
 
-export const BulletPoint = ({
-  index,
-  text
-}: {
-  index?: number;
-  text: string;
-}) => {
+export const BulletPoint = ({ index, text }: { index?: number; text: string }) => {
   return (
     <Flex gap="0" direction="row" align="start" justify="center">
       {index === undefined ? (

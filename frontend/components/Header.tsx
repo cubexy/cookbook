@@ -11,13 +11,7 @@ export const Header = () => {
           <Flex gap="2" justify="between" align="center" className="w-full">
             <Link href="/">
               <Flex gap="0">
-                <Image
-                  src="/icon.png"
-                  alt="superkochbuch Icon"
-                  width={26}
-                  height={26}
-                  className="mb-[1px] mr-2"
-                />
+                <Image src="/icon.png" alt="superkochbuch Icon" width={26} height={26} className="mb-[1px] mr-2" />
                 <Text size="6" weight="bold">
                   super
                 </Text>

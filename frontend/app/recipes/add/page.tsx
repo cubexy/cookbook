@@ -15,13 +15,7 @@ const AddRecipe = () => {
       className="w-full max-w-[600px] min-h-[calc(100dvh-72px-50px)]"
     >
       <InitialChatMessageDisplay />
-      <Flex
-        align="center"
-        direction="column"
-        justify="center"
-        gap="4"
-        className="w-full min-h-fit"
-      >
+      <Flex align="center" direction="column" justify="center" gap="4" className="w-full min-h-fit">
         <ChatInput />
         <AIDIsclaimer />
       </Flex>
