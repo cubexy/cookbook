@@ -1,13 +1,7 @@
 import { RecipeHeading } from "@/components/displays/RecipeHeading";
 import { IngredientsList } from "@/components/displays/IngredientsList";
 import { PreperationStepsList } from "@/components/displays/PreperationStepsList";
-import {
-  ArrowRightIcon,
-  CalendarIcon,
-  HandIcon,
-  InfoCircledIcon,
-  LapTimerIcon
-} from "@radix-ui/react-icons";
+import { ArrowRightIcon, CalendarIcon, HandIcon, InfoCircledIcon, LapTimerIcon } from "@radix-ui/react-icons";
 import { Badge, Callout, Flex, Separator, Tooltip } from "@radix-ui/themes";
 import Image from "next/image";
 import { RecipeChefNote } from "@/components/displays/RecipeChefNote";
@@ -17,9 +11,9 @@ export type Recipe = {
   id: number;
   title: string;
   date: string;
-  duration: string;
+  durationInMinutes: number;
   difficulty: string;
-  chefNote: string;
+  chefTopNote: string;
   tags: string[];
   ingredients: Array<{
     amount: number;
@@ -29,17 +23,16 @@ export type Recipe = {
   }>;
   steps: string[];
   image: string;
-  note: string;
+  chefBottomNote: string;
 };
 
 const RECIPE_MOCK_DATA: Recipe = {
   id: 1,
   title: "Spaghetti Bolognese",
   date: "09.02.2025",
-  duration: "30min",
+  durationInMinutes: 30,
   difficulty: "mittel",
-  chefNote:
-    "Spaghetti Bolognese ist ein Klassiker der italienischen Küche. Das Gericht hat Wohlfühlgarantie!",
+  chefTopNote: "Spaghetti Bolognese ist ein Klassiker der italienischen Küche. Das Gericht hat Wohlfühlgarantie!",
   tags: ["Italienisch", "Pasta", "Fleisch"],
   ingredients: [
     { amount: 1, unit: "Packung", unitPlural: "Packungen", item: "Nudeln" },
@@ -58,7 +51,7 @@ const RECIPE_MOCK_DATA: Recipe = {
     "Mit frisch gekochter Pasta servieren und nach Belieben mit geriebenem Parmesan und frischem Basilikum garnieren."
   ],
   image: "/recipe_placeholder.jpg",
-  note: "Besonders gut passt zur Bolognese ein schönes Glas Wein. 🍷"
+  chefBottomNote: "Besonders gut passt zur Bolognese ein schönes Glas Wein. 🍷"
 };
 
 const ShowRecipe = ({ params }: { params: { id: string } }) => {
@@ -75,12 +68,7 @@ const ShowRecipe = ({ params }: { params: { id: string } }) => {
             className="rounded-3xl shadow-2xl object-cover"
           />
         </div>
-        <Flex
-          gap="2"
-          align="center"
-          dir="row"
-          className="flex-wrap w-full md:w-[400px]"
-        >
+        <Flex gap="2" align="center" dir="row" className="flex-wrap w-full md:w-[400px]">
           <Tooltip content="Hinzugefügt am">
             <Badge color="gray" size="3">
               <CalendarIcon /> {RECIPE_MOCK_DATA.date}
@@ -89,7 +77,7 @@ const ShowRecipe = ({ params }: { params: { id: string } }) => {
           <Separator orientation="vertical" />
           <Tooltip content="Dauer der Zubereitung">
             <Badge color="gray" size="3">
-              <LapTimerIcon /> {RECIPE_MOCK_DATA.duration}
+              <LapTimerIcon /> {RECIPE_MOCK_DATA.durationInMinutes}min
             </Badge>
           </Tooltip>
           <Separator orientation="vertical" />
@@ -101,28 +89,19 @@ const ShowRecipe = ({ params }: { params: { id: string } }) => {
         </Flex>
       </Flex>
       <Separator size="4" className="!block md:!hidden" />
-      <Flex
-        direction="column"
-        align="start"
-        className="w-full md:w-[800px] gap-4 md:gap-2"
-      >
+      <Flex direction="column" align="start" className="w-full md:w-[800px] gap-4 md:gap-2">
         <RecipeHeading title={RECIPE_MOCK_DATA.title} />
-        <RecipeChefNote chefNote={RECIPE_MOCK_DATA.chefNote} />
+        <RecipeChefNote chefNote={RECIPE_MOCK_DATA.chefTopNote} />
         <RecipeTagList tags={RECIPE_MOCK_DATA.tags} />
         <IngredientsList ingredients={RECIPE_MOCK_DATA.ingredients} />
         <PreperationStepsList steps={RECIPE_MOCK_DATA.steps} />
-        <Callout.Root
-          color="gray"
-          variant="soft"
-          highContrast
-          className="w-full"
-        >
+        <Callout.Root color="gray" variant="soft" highContrast className="w-full">
           <Tooltip content="Damit machst du das Gericht noch besser!">
             <Callout.Icon>
               <ArrowRightIcon />
             </Callout.Icon>
           </Tooltip>
-          <Callout.Text>{RECIPE_MOCK_DATA.note}</Callout.Text>
+          <Callout.Text>{RECIPE_MOCK_DATA.chefBottomNote}</Callout.Text>
         </Callout.Root>
       </Flex>
     </div>

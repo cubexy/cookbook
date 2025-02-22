@@ -51,11 +51,7 @@ const MOCK_DATA: RecipeListItem[] = [
 const ListRecipes = () => {
   return (
     <Flex gap="3" direction="column" justify="start" align="start">
-      <TextField.Root
-        placeholder="Rezepte durchsuchen..."
-        className="w-full mb-3"
-        size="3"
-      >
+      <TextField.Root placeholder="Rezepte durchsuchen..." className="w-full mb-3" size="3">
         <TextField.Slot>
           <MagnifyingGlassIcon height="16" width="16" />
         </TextField.Slot>
