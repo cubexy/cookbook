@@ -22,11 +22,11 @@ model Recipe {
 }
 
 model Step {
-  id       String   @id @default(cuid())
   number   Int
   text     String
   recipe   Recipe @relation(fields: [recipeId], references: [id])
   recipeId String
+  @@id([recipeId, number])
 }
 
 model Ingredient {
@@ -36,7 +36,6 @@ model Ingredient {
   unit String
   recipe Recipe @relation(fields: [recipeId], references: [id])
   recipeId String
-  
 }
 
 model Tag {

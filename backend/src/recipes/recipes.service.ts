@@ -91,14 +91,16 @@ export class RecipesService {
             create: { name: tag }
           }))
         },
-        ingredients: {
-          create: updateRecipeDto.ingredients?.map((ingredient) => ({
+        ingredients: updateRecipeDto.ingredients && {
+          deleteMany: {},
+          create: updateRecipeDto.ingredients.map((ingredient) => ({
             name: ingredient.name,
             quantity: ingredient.quantity,
             unit: ingredient.unit
           }))
         },
-        steps: {
+        steps: updateRecipeDto.steps && {
+          deleteMany: {},
           create: updateRecipeDto.steps?.map((step, index) => ({
             text: step,
             number: index
