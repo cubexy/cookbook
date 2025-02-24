@@ -49,6 +49,10 @@ export class RecipesService {
     });
   }
 
+  /**
+   * Finds all recipes.
+   * @returns All recipes
+   */
   findAll() {
     return this.prisma.recipe.findMany({
       include: {
@@ -59,6 +63,11 @@ export class RecipesService {
     });
   }
 
+  /**
+   * Finds a recipe by its ID.
+   * @param id ID of the recipe to find
+   * @returns Recipe with the given ID
+   */
   findOne(id: string) {
     return this.prisma.recipe.findUnique({
       where: { id },
@@ -70,6 +79,12 @@ export class RecipesService {
     });
   }
 
+  /**
+   * Updates a recipe by its ID.
+   * @param id ID of the recipe to update
+   * @param updateRecipeDto Pre-validated input data for updating the recipe
+   * @returns Updated recipe
+   */
   update(id: string, updateRecipeDto: UpdateRecipeDto) {
     return this.prisma.recipe.update({
       where: { id },
@@ -110,6 +125,11 @@ export class RecipesService {
     });
   }
 
+  /**
+   * Removes a recipe by its ID.
+   * @param id ID of the recipe to remove
+   * @returns Removed recipe
+   */
   remove(id: string) {
     return this.prisma.recipe.delete({
       where: { id }
