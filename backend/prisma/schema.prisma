@@ -31,16 +31,16 @@ model Step {
 
 model Ingredient {
   id      String   @id @default(cuid())
-  amount  Int
-  unit    String
   name    String
+  quantity  Float
+  unit String
   recipe Recipe @relation(fields: [recipeId], references: [id])
   recipeId String
+  
 }
 
 model Tag {
-  id      String   @id @default(cuid())
-  name    String
+  name    String  @id
   recipes Recipe[]
 }
 
@@ -48,16 +48,4 @@ enum Difficulty {
   EASY
   MEDIUM
   HARD
-}
-
-enum Unit {
-  GRAM
-  MILLILITER
-  PIECE
-  TEASPOON
-  TABLESPOON
-  CUP
-  PINCH
-  PINCHES
-  HANDFUL
 }
