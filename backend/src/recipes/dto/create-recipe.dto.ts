@@ -1,6 +1,7 @@
 import { Difficulty } from "@prisma/client";
 import { Type } from "class-transformer";
 import {
+  ArrayNotEmpty,
   IsIn,
   IsInt,
   IsNotEmpty,
@@ -8,6 +9,7 @@ import {
   IsPositive,
   IsString,
   IsUrl,
+  Length,
   ValidateNested
 } from "class-validator";
 
@@ -37,14 +39,17 @@ export class CreateRecipeDto {
   @IsIn(["EASY", "MEDIUM", "HARD"])
   readonly difficulty: Difficulty;
 
+  @ArrayNotEmpty()
   @IsString({ each: true })
-  @IsNotEmpty({ each: true })
+  @Length(1, 16, { each: true })
   readonly tags: string[];
 
+  @ArrayNotEmpty()
   @ValidateNested({ each: true })
   @Type(() => IngredientDto)
   readonly ingredients: IngredientDto[];
 
+  @ArrayNotEmpty()
   @IsString({ each: true })
   @IsNotEmpty({ each: true })
   readonly steps: string[];

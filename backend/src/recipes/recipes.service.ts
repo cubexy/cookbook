@@ -14,6 +14,11 @@ export class RecipesService {
    */
   async create(createRecipeDto: CreateRecipeDto) {
     return await this.prisma.recipe.create({
+      include: {
+        tags: true,
+        ingredients: true,
+        steps: true
+      },
       data: {
         title: createRecipeDto.title,
         durationInMinutes: createRecipeDto.durationInMinutes,
@@ -45,18 +50,34 @@ export class RecipesService {
   }
 
   findAll() {
-    return this.prisma.recipe.findMany();
+    return this.prisma.recipe.findMany({
+      include: {
+        tags: true,
+        ingredients: true,
+        steps: true
+      }
+    });
   }
 
   findOne(id: string) {
     return this.prisma.recipe.findUnique({
-      where: { id }
+      where: { id },
+      include: {
+        tags: true,
+        ingredients: true,
+        steps: true
+      }
     });
   }
 
   update(id: string, updateRecipeDto: UpdateRecipeDto) {
     return this.prisma.recipe.update({
       where: { id },
+      include: {
+        tags: true,
+        ingredients: true,
+        steps: true
+      },
       data: {
         title: updateRecipeDto.title,
         durationInMinutes: updateRecipeDto.durationInMinutes,
