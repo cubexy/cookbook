@@ -8,7 +8,7 @@ export const InitialChatMessageDisplay = () => {
       <Avatar fallback={<MagicWandIcon />} size={"2"} className="shadow-md" />
       <TypeIt
         options={{
-          speed: 30,
+          speed: 12,
           waitUntilVisible: true,
           cursorChar: "▮",
           lifeLike: true
