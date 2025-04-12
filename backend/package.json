@@ -21,6 +21,7 @@
     "pretty": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
   "dependencies": {
+    "@ai-sdk/azure": "^1.3.11",
     "@ai-sdk/openai": "^1.1.14",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
