@@ -1,9 +1,7 @@
 import { Body, Controller, Post, Res } from "@nestjs/common";
 import { GenerateRecipeService } from "./generate-recipe.service";
-import { Output, pipeDataStreamToResponse, streamText } from "ai";
+import { pipeDataStreamToResponse } from "ai";
 import { Response } from "express";
-import { azure } from "@ai-sdk/azure";
-import { createRecipeSchema } from "src/recipes/schemas/create-recipe.schema";
 import { GenerateRecipeDto } from "./dto/generate-recipe.dto";
 
 @Controller("generate-recipe")
@@ -17,19 +15,10 @@ export class GenerateRecipeController {
   ) {
     pipeDataStreamToResponse(res, {
       execute: async (dataStreamWriter) => {
-        dataStreamWriter.writeData("Generating recipe...");
-
-        const result = streamText({
-          model: azure("gpt-4o-mini"),
-          system:
-            "Du bist ein Rezeptgenerator. Erstelle ein Rezept mit detaillierten Anweisungen.",
-          prompt: generateRecipeDto.prompt,
-          experimental_output: Output.object({
-            schema: createRecipeSchema
-          })
-        });
-
-        result.mergeIntoDataStream(dataStreamWriter);
+        await this.generateRecipeService.generateRecipe(
+          generateRecipeDto.prompt,
+          dataStreamWriter
+        );
       },
       onError: (error) => {
         return error instanceof Error ? error.message : String(error);
