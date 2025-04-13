@@ -23,9 +23,9 @@ export class RecipesService {
         title: createRecipeDto.title,
         durationInMinutes: createRecipeDto.durationInMinutes,
         difficulty: createRecipeDto.difficulty,
-        chefTopNote: createRecipeDto.chefTopNote,
-        chefBottomNote: createRecipeDto.chefBottomNote,
-        imageUrl: createRecipeDto.imageUrl,
+        chefTopNote: createRecipeDto.chefTopNote ?? null,
+        chefBottomNote: createRecipeDto.chefBottomNote ?? null,
+        imageUrl: "localhost:3000/recipe_placeholder.jpg",
         tags: {
           connectOrCreate: createRecipeDto.tags.map((tag) => ({
             where: { name: tag },
@@ -99,7 +99,7 @@ export class RecipesService {
         difficulty: updateRecipeDto.difficulty,
         chefTopNote: updateRecipeDto.chefTopNote,
         chefBottomNote: updateRecipeDto.chefBottomNote,
-        imageUrl: updateRecipeDto.imageUrl,
+        imageUrl: "localhost:3000/recipe_placeholder.jpg",
         tags: {
           connectOrCreate: updateRecipeDto.tags?.map((tag) => ({
             where: { name: tag },

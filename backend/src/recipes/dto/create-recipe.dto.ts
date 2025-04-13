@@ -1,7 +1,9 @@
+import { Optional } from "@nestjs/common";
 import { Difficulty } from "@prisma/client";
 import { Type } from "class-transformer";
 import {
   ArrayNotEmpty,
+  IsBase64,
   IsIn,
   IsInt,
   IsNotEmpty,
@@ -54,16 +56,17 @@ export class CreateRecipeDto {
   @IsNotEmpty({ each: true })
   readonly steps: string[];
 
-  @IsUrl()
-  readonly imageUrl: string;
+  @IsOptional()
+  @IsBase64()
+  readonly image: string;
 
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  readonly chefTopNote?: string;
+  readonly chefTopNote: string;
 
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  readonly chefBottomNote?: string;
+  readonly chefBottomNote: string;
 }

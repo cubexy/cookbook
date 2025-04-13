@@ -24,7 +24,11 @@ export const createRecipeSchema = z.object({
     .int()
     .positive()
     .describe("Dauer in Minuten, um das Rezept zuzubereiten."),
-  difficulty: z.enum(["EASY", "MEDIUM", "HARD"] as const),
+  difficulty: z
+    .enum(["EASY", "MEDIUM", "HARD"] as const)
+    .describe(
+      "Schwierigkeitsgrad des Rezepts. Beispiel: EASY = Eierkuchen, MEDIUM = Spaghetti Bolognese, HARD = Soufflé."
+    ),
   tags: z
     .array(z.string().min(1).max(16))
     .min(1)
@@ -39,13 +43,7 @@ export const createRecipeSchema = z.object({
     .array(z.string().min(1))
     .min(1)
     .describe(
-      "Liste der Schritte, die zur Zubereitung des Rezepts erforderlich sind. Es werden keine Nummern erwartet. Die Schritte sollen als ganze Sätze ausgeschrieben werden. Bspw: 'Hacke die Tomaten und gib sie in die Schüssel.'."
-    ),
-  imageUrl: z
-    .string()
-    .url()
-    .describe(
-      "URL zu einem Bild des Rezepts. Es wird empfohlen, ein Bild von der Webseite https://unsplash.com/ zu verwenden."
+      "Liste der Schritte, die zur Zubereitung des Rezepts erforderlich sind. Es werden keine Nummern erwartet. Die Schritte sollen als ganze Sätze ausgeschrieben werden. Bspw: 'Hacke die Tomaten klein und gib sie in die Schüssel.'."
     ),
   chefTopNote: z
     .string()
@@ -60,5 +58,10 @@ export const createRecipeSchema = z.object({
     .optional()
     .describe(
       "Tipp des Kochs, um das Rezept zu verfeinern. Die Notiz soll nur generiert werden, wenn es einen persönlichen Tipp gibt. Es kann am Ende des Strings ein Emoji verwendet werden, wenn dieser gut zu dem Text passt. Bspw: 'Besonders gut passt zur Bolognese ein schönes Glas Wein. 🍷'."
+    ),
+  imageDescription: z
+    .string()
+    .describe(
+      "Vereinfachte Bildbeschreibung des Rezepts, bspw. 'Spaghetti Bolognese auf einem Teller mit Parmesan und Petersilie garniert.'. (Serviervorschlag). Hinweis: wird für Bildgenerierung verwendet."
     )
 });
