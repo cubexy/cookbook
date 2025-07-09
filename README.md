@@ -1,8 +1,8 @@
 # cookbook
 
-my cookbook project :\)
+`WIP`
 
 frontend: nextjs
 backend: nestjs
 database: postgres
-runs on docker (soonTM)
+runs on docker compose
